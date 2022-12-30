@@ -13,9 +13,7 @@ currentStatus = "OFF"
 def checkConncetion():
     global currentStatus
     global bot
-    # response = ping("91.227.183.197", 5, 0.2, privileged=True)
-    # response = ping("195.189.227.49", 5, 0.2, privileged=True)
-    # response = ping("10.8.0.3", 5, 0.2, privileged=True)
+    response = ping("your ip", 5, 0.2, privileged=True)
     print(f"Time: {datetime.datetime.now().strftime('%d.%m.%Y %H:%M')}")
     if response.is_alive:
         if currentStatus == "OFF":
