@@ -2,8 +2,8 @@ import datetime
 from time import sleep
 import telegram
 from icmplib import ping
+from importlib import resources
 
-TG_TOKEN = "5857992954:AAEXOiADgCI5LkBd5CpnWrasDjhNkH75j3I"
 bot = telegram.Bot(TG_TOKEN)
 
 lastOnTime = ""
@@ -32,6 +32,15 @@ def checkConncetion():
     return response.is_alive
 
 if __name__ == '__main__':
+    global TG_TOKEN
+    with resources.open_text("resources", "secret.properties") as secret:
+        lines = secret.readlines()
+        for line in lines:
+            line = line.strip()
+            if line.split(":")[0] == "TG_TOKEN":
+                TG_TOKEN = line.replace(f"{line.split(':')[0]}:", "")
+    print(TG_TOKEN)
+
     while True:
         checkConncetion()
 
